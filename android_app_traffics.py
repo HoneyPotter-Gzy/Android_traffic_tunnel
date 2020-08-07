@@ -95,17 +95,23 @@ def reboot():
 if __name__ == '__main__':
     with open('app_list',encoding='utf8') as fp :
         package_list = fp.readlines()[1:]
-    package_list.reverse()
-    for i in range(40):  #
-        for each in package_list:
-            for _ in range(1):
-                package =each.strip().split(",")[1]
-                print("Current app: {0} ".format(package))
-                print("Please input your operation name:")
-                operation=input()
-                try:
-                    capture_main(package,operation)
-                    print("===========================================================")
-                except BaseException as exp:
-                    print('Error :',exp)
-                    #reboot()
+    # package_list.reverse()
+    for each in package_list:  # 对每个应用
+        for _ in range(1):  # 重复执行n次,此处可以根据需要来修改每个应用循环执行的次数
+            package =each.strip().split(",")[1]
+            print("Current app: {0} ".format(package))
+            print("Please input your operation name:")
+            operation=input()
+            try:
+                capture_main(package,operation)
+                print("===========================================================")
+            except BaseException as exp:
+                print('Error :',exp)
+                #reboot()
+        print('Please change the configuration in rixcloud……')
+        while(1):
+            s=input()
+            if s=='y':
+                break
+            else:
+                print('Input y if you have already change the configuration.')
